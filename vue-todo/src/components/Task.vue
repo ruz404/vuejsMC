@@ -1,7 +1,7 @@
 <template>
 <!-- <div class="task"> -->
     <!-- Hacemos un binding de class para poder traernos si la task tiene o no reminder -->
-<div :class="[task.reminder ? 'reminder' : '', 'task']">   <!--Si el reminder es verdadero, agrgar clase reminder, sino omitir, siempre agregar task -->
+<div @dblclick="$emit('toggle-reminder', task.id)" :class="[task.reminder ? 'reminder' : '', 'task']">   <!--Si el reminder es verdadero, agrgar clase reminder, sino omitir, siempre agregar task -->
     <h3>{{ task.text }}
         <!-- <i class="fas fa-times"></i> -->
         <i @click="onDelete(task.id)" class="fas fa-times"></i>

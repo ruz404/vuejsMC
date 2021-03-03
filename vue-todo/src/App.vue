@@ -5,7 +5,7 @@
     <!-- 3. <h1>Hello World</h1> -->
     <!-- <Header /> -->
     <Header title="To Do List" />
-    <Tasks @delete-task="deleteTask" :tasks="tasks" />  <!-- Este es un elemento Dinámico porque quremos que se refreshee -->
+    <Tasks @toggle-reminder="toggleReminder" @delete-task="deleteTask" :tasks="tasks" />  <!-- Este es un elemento Dinámico porque quremos que se refreshee -->
   </div>
 </template>
 
@@ -34,7 +34,16 @@ export default {
         //we want everything back to the list except the deleted one
         this.tasks = this.tasks.filter((task) => task.id !== id);
       }
+    },
+    toggleReminder(id){
+      console.log("reminder ", id);
+      this.tasks = this.tasks.map((task) => task.id === id ? {...task, reminder: !task.reminder} : task)
+      //map array (manipular y regrear del array lo que queremos)
+      //queremos updated tasks - por cada task, tenemos una condición de que si la task.id es igual al id seleccionado 
+      //retornamos un array de objetos donde tenemos la propiedad inicial de la task para ir a la task inicial 
+      //y vamos a cambiar  el reminder para lo contrario de su estado actual (si está on->off) sino no hacemos nada, solo retornamos la task inicial
     }
+
   },
   created(){
     this.tasks = [

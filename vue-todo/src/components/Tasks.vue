@@ -2,7 +2,7 @@
     <div>
         <div :key="task.id" v-for="task in tasks">
             <!-- <h3>{{ task.text }}</h3> -->
-            <Task @delete-task="$emit('delete-task', task.id)" :task="task" />
+            <Task @dblclick="$emit('toggle-reminder', task.id)" @delete-task="$emit('delete-task', task.id)" :task="task" />
         </div>
     </div>
     
@@ -18,7 +18,7 @@ import Task from './Task'
         components:{
             Task,
         },
-        emits: ['delete-task'] //- array of events
+        emits: ['delete-task', 'toggle-reminder'] //- array of events
     }
 </script>
 
