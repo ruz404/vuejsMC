@@ -5,6 +5,7 @@
     <!-- 3. <h1>Hello World</h1> -->
     <!-- <Header /> -->
     <Header title="To Do List" />
+    <AddTask @add-task="addTask" />
     <Tasks @toggle-reminder="toggleReminder" @delete-task="deleteTask" :tasks="tasks" />  <!-- Este es un elemento Dinámico porque quremos que se refreshee -->
   </div>
 </template>
@@ -13,6 +14,7 @@
 //2. import HelloWorld from './components/HelloWorld.vue'
 import Header from  './components/Header'
 import Tasks from  './components/Tasks'
+import AddTask from './components/AddTask'
 
 
 export default {
@@ -20,7 +22,8 @@ export default {
   components: {
     //1. HelloWorld
     Header,
-    Tasks
+    Tasks,
+    AddTask
   },
   data(){
     return {
@@ -28,6 +31,9 @@ export default {
     }
   },
   methods:{
+    addTask(task){
+      this.tasks = [...this.tasks, task]
+    },
     deleteTask(id){
       // console.log('task', id);
       if(confirm("Are you sure?")){
