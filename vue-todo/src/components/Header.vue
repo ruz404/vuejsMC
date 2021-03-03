@@ -2,9 +2,9 @@
     <header>
         <!-- <h1>To Do List</h1> -->
         <h1>{{ title }}</h1>
-        <Button text='Add' color='green' />
-        <Button text='Update' color='blue' />
-        <Button text='Delete' color='red' />
+        <Button @btn-click="$emit('toggle-add-task')" :text="showAddTask ? 'Close' : 'Add'" :color="showAddTask ? 'red' : 'green'" />
+        <!-- <Button text='Update' color='blue' />
+        <Button text='Delete' color='red' /> -->
     </header>
 </template>
 
@@ -18,7 +18,8 @@
             title: {
                 type: String,
                 default: 'Some Title'
-            }
+            },
+            showAddTask: Boolean
         },
         // props:{
         //     title: String,

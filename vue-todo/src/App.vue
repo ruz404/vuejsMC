@@ -4,8 +4,10 @@
   <div class="container">
     <!-- 3. <h1>Hello World</h1> -->
     <!-- <Header /> -->
-    <Header title="To Do List" />
-    <AddTask @add-task="addTask" />
+    <Header @toggle-add-task="toggleAddTask" title="To Do List" :showAddTask="showAddTask" />
+    <div v-show="showAddTask">
+      <AddTask @add-task="addTask" />
+    </div>
     <Tasks @toggle-reminder="toggleReminder" @delete-task="deleteTask" :tasks="tasks" />  <!-- Este es un elemento Dinámico porque quremos que se refreshee -->
   </div>
 </template>
@@ -27,10 +29,14 @@ export default {
   },
   data(){
     return {
-      tasks: []
+      tasks: [],
+      showAddTask: false
     }
   },
   methods:{
+    toggleAddTask(){
+      this.showAddTask = !this.showAddTask
+    },
     addTask(task){
       this.tasks = [...this.tasks, task]
     },

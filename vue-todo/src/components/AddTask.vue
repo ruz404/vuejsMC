@@ -36,6 +36,8 @@
         methods: {
             onSubmit(e){
                 e.preventDefault()
+                // tells the user agent that if the event does not get explicitly handled, 
+                //its default action should not be taken as it normally would be. - Cuando te pide ingresar mayusculas y aparece un error:https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault 
                 if(!this.text){
                     alert("Please add a task");
                     return
